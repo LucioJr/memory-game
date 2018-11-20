@@ -18,7 +18,7 @@ body{
     margin: 0 auto;
     border-radius: 2%;
     margin-top: calc((100vh - 600px)/2);
-    background-color: #fff;
+    /* background-color: #fff; */
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +31,14 @@ body{
     min-width: 130px;
     min-height: 130px;
     padding: 5px;
-    background-color: #080000;
+    /* background-color: #080000; */
     background-image: linear-gradient(to top left, #4CA1AF, #C4E0E5);
     border-radius: 10px;
+    transition: all 0.2s;
 }
+
+.card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px #333;
+}
+
