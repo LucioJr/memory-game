@@ -7,9 +7,32 @@
     <title>Lucio's Memory Game</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
 </head>
 <body>
     <section>
+        <h1>Lucio's Matching Game</h1>
+        <div class="scoreboard">
+            <div>
+                <ul class="stars">
+                    <li><i class="fas fa-star"></i></li>
+                    <li><i class="fas fa-star"></i></li>
+                    <li><i class="fas fa-star"></i></li>
+                </ul>
+            </div>
+            <div>
+                Moves: <span class="moves">0</span>
+            </div>
+            <div>
+                <span class="timer">00:00</span>
+            </div>
+            <div class="reset-button">
+                    <i class="fas fa-redo-alt"></i>
+            </div>
+        </div>
         <ul class="deck"> 
             <li class="card"><i class="fas fa-dragon"></i></li>
             <li class="card"><i class="fab fa-android"></i></li>
