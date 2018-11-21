@@ -69,7 +69,7 @@ h1{
 }
 
 .card:hover{
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: 0 3px 5px #333;
 }
 
@@ -82,7 +82,7 @@ h1{
     background-image: none;
     background-color: #00cbff;
     box-shadow: 0 3px 5px #333;
-    transform: translateY(-3px);
+    transform: translateY(-4px);
 }
 
 .fliped i{
@@ -90,5 +90,12 @@ h1{
 }
 
 .matched{
+    background-image: none;
     background-color: #00ff72;
+    box-shadow: 0 3px 5px #333;
+    transform: translateY(-4px);
+}
+
+.matched i{
+    display: initial;
 }
