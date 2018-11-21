@@ -25,24 +25,28 @@ $(function () {
             return ""+t;
         }
     }
-    
-    // Reset button actions
-    $('.reset-button').on("click", function () {
+
+    function restartGame() {
         s = -1;
         m = -1;
         numStars = 3;
         $('.moves').html('0');
         $('.stars li').css('visibility','visible');
+        $('.card').removeClass('fliped matched');
         clearInterval(counter);
         counter = setInterval(timer, 1000);
         moves = 0;
         tempoTotal = 0;
-    });
+    }
+    
+    // Reset button actions
+    $('.reset-button').on("click", restartGame);
     
     // Incrementar movimentos e decrementar estrelas
     $('.card').click(function (e) { 
         e.preventDefault();
         moves += 1;
+        $(this).addClass('fliped');
         $('.moves').html(moves);
         if (moves > 32 && tempoTotal > 240) {
             $('.stars li:nth-child(2)').css('visibility','hidden');

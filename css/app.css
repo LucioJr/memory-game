@@ -36,6 +36,11 @@ h1{
     display: inline;
 }
 
+.stars li i{
+    color: #ffcc00;
+    text-shadow: 1px 1px 1px #444;
+}
+
 .deck{
     width: 600px;
     height: 600px;
@@ -64,8 +69,8 @@ h1{
 }
 
 .card:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px #333;
+    transform: translateY(-3px);
+    box-shadow: 0 3px 5px #333;
 }
 
 .card i{
@@ -73,12 +78,17 @@ h1{
     display: none;
 }
 
-.card:active i{
+.fliped{
+    background-image: none;
+    background-color: #00cbff;
+    box-shadow: 0 3px 5px #333;
+    transform: translateY(-3px);
+}
+
+.fliped i{
     display: initial;
 }
 
-.card:active{
-    background-image: none;
-    background-color: red;
+.matched{
+    background-color: #00ff72;
 }
-
