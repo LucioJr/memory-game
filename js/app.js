@@ -116,8 +116,10 @@ $(function () {
         // Decrementa o star rating de acordo com o numero de movimentos
         if (moves > 48) {
             $('.stars li:nth-child(2)').css('visibility','hidden');
+            numStars -= 1;
         } else if (moves > 24) {
             $('.stars li:last-child').css('visibility','hidden');
+            numStars -= 1;
         }
         if(pairs == 8) {
             window.alert('Fim de jogo!');

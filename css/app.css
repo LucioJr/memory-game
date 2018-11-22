@@ -5,7 +5,6 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 16px;
-    /* border: 0.5px dotted grey; */
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -36,7 +35,7 @@ h1{
     display: inline;
 }
 
-.stars li i{
+.stars li i, .modal i{
     color: #ffcc00;
     text-shadow: 1px 1px 1px #444;
 }
@@ -104,4 +103,93 @@ h1{
 
 .unmatched{
     background-color: red;
+}
+/* Modal (https://www.w3schools.com/howto/howto_css_modals.asp) com modificações minhas */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    /* padding-top: 100px; Location of the box */
+    left: calc((100vw - 400px)/2);
+    top: calc((100vh - 400px)/2);
+    width: 400px; /* Full width */
+    height: 400px; /* Full height */
+    overflow: none; /* Enable scroll if needed */
+    background-color: transparent; /* Fallback color */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 400px;
+    height: 400px;
+}
+
+.modal-content h1, .modal-content h3 {
+    text-align: center;
+    margin: 35px auto;
+}
+
+.modal-content p:first-of-type {
+    margin-bottom: 25px;
+}
+
+.modal-content p {
+    margin: 10px 40px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.prompt {
+    display: flex;
+    justify-content: space-around;
+}
+.button {
+    text-align: center;
+    line-height: 35px;
+    height: 40px;
+    width: 100px;
+    margin-top: -10px;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.yes{
+    border: 2px solid green;
+    color: green;
+}
+
+.yes:hover{
+    background-color: green;
+    color: #fff;
+}
+
+.no{
+    border: 2px solid red;
+    color: red;
+}
+
+.no:hover{
+    background-color: red;
+    color: #fff;
 }

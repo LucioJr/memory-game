@@ -13,6 +13,24 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Congrats! You've finished!</h1>
+            <p>Here's the summary of your game:</p>
+            <p>Star rating: <i class="fas fa-star"></i>&nbsp;&times;<span id="stars"> 0</span></p>
+            <p>Total time: <span id="total-time">00:00</span></p>
+            <p>Number of movements: <span id="movements">9</span></p>
+            <h3>Play again?</h3>
+            <div class="prompt">
+                <div class="button yes">Sure!</div>
+                <div class="button no">No, thanks</div>
+            </div>
+        </div>
+    </div>
+
     <section>
         <h1>Lucio's Matching Game</h1>
         <div class="scoreboard">
