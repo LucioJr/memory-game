@@ -1,5 +1,5 @@
-$(function () {
-    // Inicializa todas as variáveis para o início do jogo após carregamento da página
+document.addEventListener("DOMContentLoaded", function(event) {
+    // Initialize variables after document is loaded
     var counter;
     var moves = 0;
     var m = 0; 
@@ -8,10 +8,10 @@ $(function () {
     var tempoTotal;
     var pairs = 0;
     var flipedCards = [];
-    counter = setInterval(timer, 1000); //Inicia a contagem do tempo
-    createNewDeck(); // Distribui as cartas
+    counter = setInterval(timer, 1000); //Starts timer
+    createNewDeck(); // Prepare board
    
-    // Função para embaralhar (fornecida pela udacity)
+    // Shuffle cards (given by Udacity)
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
       
@@ -30,7 +30,7 @@ $(function () {
         return array;
       }
     
-    // Função para distribuir as cartas embaralhadas
+    // Create deck of shuffled cards
     function createNewDeck() {
         var cardsList = ["fab fa-android","fab fa-android","fab fa-mailchimp","fab fa-mailchimp","fas fa-code","fas fa-code","fas fa-dragon","fas fa-dragon","fas fa-drum","fas fa-drum","fas fa-feather","fas fa-feather","fas fa-gamepad","fas fa-gamepad","fas fa-lightbulb","fas fa-lightbulb"];
 
@@ -38,21 +38,20 @@ $(function () {
         
         for(var i = 0; i < newDeck.length; i++){
             document.querySelectorAll('.card')[i].innerHTML = "<i class='"+ newDeck[i] +"'></i>";
-        }
-        
+        }    
     }
 
-    // Função para criar o contador de tempo
+    // Create counter function
     function timer() {
         s += 1;
         if (s % 60 == 0) {
             s = 0;
             m += 1;        
         }
-        $('.timer').html(ajustaTempo(m)+":"+ajustaTempo(s));    
+        document.getElementsByClassName('timer')[0].innerHTML = ajustaTempo(m)+":"+ajustaTempo(s);
     }
     
-    // Função auxiliar da função timer para adicionar o '0' quando o tempo tiver 1 digito
+    // Auxiliary function to add an extra digit to seconds and minutes when they have a single digit
     function ajustaTempo(t) {
         if(t < 10){
             t = "0" + t;
@@ -62,30 +61,29 @@ $(function () {
         }
     }
 
-    // Função para reiniciar o jogo a qualquer momento
+    // Restart game function
     function restartGame() {
         s = -1;
         m = -1;
         numStars = 3;
-        $('.moves').html('0');
+        document.getElementsByClassName('moves')[0].innerHTML = 0;
         $('.stars li').css('visibility','visible');
         $('.card').removeClass('fliped matched unmatched');
-        clearInterval(counter); // Zera a contagem de tempo
-        createNewDeck(); // Redistribui as cartas
-        counter = setInterval(timer, 1000); // Reinicia a contagem de tempo
+        clearInterval(counter); // Stop timer
+        createNewDeck(); // Redistribute deck
+        counter = setInterval(timer, 1000); // Restart timer
         moves = 0;
         pairs = 0;
     }
     
-    // Função para comparar 2 cards
+    // Compare 2 fliped cards
     function comparaCards(array) {
         if(array[0] == array[1]){
             pairs += 1;
-            $('.fliped').addClass('matched');
+            $('.fliped').addClass('matched'); //if they match
             $('.matched').removeClass('fliped');
         } else {
-            // Falta só adicionar o timeout para desvirar os cards !!!
-            $('.fliped').addClass('unmatched');
+            $('.fliped').addClass('unmatched'); //if they don't match
             setTimeout(function () {
                 $('.fliped').removeClass('fliped unmatched');
             }, 500);
@@ -93,22 +91,22 @@ $(function () {
         };
     }
 
-    // Função para terminar o jogo
+    // End game function
     function endGame() {
         clearInterval(counter);
-        tempoTotal = $('.timer').html();
-        $('#total-time').html(tempoTotal);
-        $('#stars').html(numStars);
-        $('#moves').html(moves);
+        tempoTotal = document.getElementsByClassName('timer')[0].innerHTML;
+        document.getElementById('total-time').innerHTML = tempoTotal;
+        document.getElementById('stars').innerHTML = numStars;
+        document.getElementById('moves').innerHTML = moves;
         setTimeout(function () {
             $('.modal').css('display','block');
         }, 500);
     }
 
-    // Adiciona o event listener para o botão de reiniciar o jogo
-    $('.reset-button').on("click", restartGame);
+    // Add event listener to restart button
+    document.getElementsByClassName('reset-button')[0].addEventListener("click", restartGame);
 
-    // Adiciona event listeners da modal
+    // Modal event listeners
     $('.close').click(function (e) { 
         e.preventDefault();
         $('.modal').css('display','none');
@@ -123,21 +121,21 @@ $(function () {
         $('.modal').css('display','none');
     });
     
-    
-    // Função principal do jogo / adiciona o event listener para os cards
+    // Main event listeners
     $('.card').click(function (e) { 
         e.preventDefault();
-        moves += 1; // Incrementa o contador de movimentos a cada card clicado
-        $(this).addClass('fliped'); // Adiciona a classe fliped a cada card clicado
-        $('.moves').html(moves); // Atualiza o contador de movimentos
-        
+        moves += 1; // Increment number of moves
+        $(this).addClass('fliped'); // Add 'fliped' class to each clicked card
+        // Update moves counter
+        document.getElementsByClassName('moves')[0].innerHTML = moves;
+
         flipedCards.push(this.firstElementChild.className);
         console.log(flipedCards);
         if(flipedCards.length == 2) {
             comparaCards(flipedCards);
             flipedCards = [];
         };
-        // Decrementa o star rating de acordo com o numero de movimentos
+        // Change star-rating according to number of moves
         if (moves > 48) {
             $('.stars li:nth-child(2)').css('visibility','hidden');
             numStars = 1;
@@ -145,7 +143,7 @@ $(function () {
             $('.stars li:last-child').css('visibility','hidden');
             numStars = 2;
         }
-        // Se o numero de pares for 8, ou seja, o jogo terminou, chama a função de terminar o jogo
+        // Calls endGame function when number of pairs is 8
         if(pairs == 8) {
             endGame();
         }
