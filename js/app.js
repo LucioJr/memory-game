@@ -1,11 +1,11 @@
 $(function () {
-    // Inicializa todas as variáveis para o início do jogo
+    // Inicializa todas as variáveis para o início do jogo após carregamento da página
     var counter;
     var moves = 0;
     var m = 0; 
     var s = 0;
     var numStars = 3;
-    var tempoTotal = 0;
+    var tempoTotal;
     var pairs = 0;
     var flipedCards = [];
     counter = setInterval(timer, 1000); //Inicia a contagem do tempo
@@ -37,7 +37,7 @@ $(function () {
         var newDeck = shuffle(cardsList);
         
         for(var i = 0; i < newDeck.length; i++){
-            document.querySelectorAll('.card')[i].innerHTML = "<i class='"+newDeck[i]+"'></i>";
+            document.querySelectorAll('.card')[i].innerHTML = "<i class='"+ newDeck[i] +"'></i>";
         }
         
     }
@@ -45,7 +45,6 @@ $(function () {
     // Função para criar o contador de tempo
     function timer() {
         s += 1;
-        tempoTotal += 1;
         if (s % 60 == 0) {
             s = 0;
             m += 1;        
@@ -70,35 +69,60 @@ $(function () {
         numStars = 3;
         $('.moves').html('0');
         $('.stars li').css('visibility','visible');
-        $('.card').removeClass('fliped matched');
+        $('.card').removeClass('fliped matched unmatched');
         clearInterval(counter); // Zera a contagem de tempo
         createNewDeck(); // Redistribui as cartas
         counter = setInterval(timer, 1000); // Reinicia a contagem de tempo
         moves = 0;
-        tempoTotal = 0;
         pairs = 0;
     }
     
     // Função para comparar 2 cards
     function comparaCards(array) {
         if(array[0] == array[1]){
-            console.log("Achou");
             pairs += 1;
             $('.fliped').addClass('matched');
             $('.matched').removeClass('fliped');
         } else {
             // Falta só adicionar o timeout para desvirar os cards !!!
-            console.log("Não achou");
             $('.fliped').addClass('unmatched');
             setTimeout(function () {
                 $('.fliped').removeClass('fliped unmatched');
-            }, 1000);
+            }, 500);
             
         };
     }
 
+    // Função para terminar o jogo
+    function endGame() {
+        clearInterval(counter);
+        tempoTotal = $('.timer').html();
+        $('#total-time').html(tempoTotal);
+        $('#stars').html(numStars);
+        $('#moves').html(moves);
+        setTimeout(function () {
+            $('.modal').css('display','block');
+        }, 500);
+    }
+
     // Adiciona o event listener para o botão de reiniciar o jogo
     $('.reset-button').on("click", restartGame);
+
+    // Adiciona event listeners da modal
+    $('.close').click(function (e) { 
+        e.preventDefault();
+        $('.modal').css('display','none');
+    });
+    $('.yes').click(function (e) { 
+        e.preventDefault();
+        $('.modal').css('display','none');
+        restartGame();
+    });
+    $('.no').click(function (e) { 
+        e.preventDefault();
+        $('.modal').css('display','none');
+    });
+    
     
     // Função principal do jogo / adiciona o event listener para os cards
     $('.card').click(function (e) { 
@@ -116,16 +140,14 @@ $(function () {
         // Decrementa o star rating de acordo com o numero de movimentos
         if (moves > 48) {
             $('.stars li:nth-child(2)').css('visibility','hidden');
-            numStars -= 1;
+            numStars = 1;
         } else if (moves > 24) {
             $('.stars li:last-child').css('visibility','hidden');
-            numStars -= 1;
+            numStars = 2;
         }
+        // Se o numero de pares for 8, ou seja, o jogo terminou, chama a função de terminar o jogo
         if(pairs == 8) {
-            window.alert('Fim de jogo!');
+            endGame();
         }
     });
-
-    
-
 }); // end of global function
