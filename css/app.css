@@ -83,6 +83,7 @@ h1{
     background-color: #00cbff;
     box-shadow: 0 3px 5px #333;
     transform: translateY(-4px);
+    pointer-events: none;
 }
 
 .fliped i{
@@ -94,8 +95,13 @@ h1{
     background-color: #00ff72;
     box-shadow: 0 3px 5px #333;
     transform: translateY(-4px);
+    pointer-events: none;
 }
 
 .matched i{
     display: initial;
+}
+
+.unmatched{
+    background-color: red;
 }

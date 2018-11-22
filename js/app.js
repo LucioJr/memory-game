@@ -6,6 +6,7 @@ $(function () {
     var s = 0;
     var numStars = 3;
     var tempoTotal = 0;
+    var pairs = 0;
     var flipedCards = [];
     counter = setInterval(timer, 1000); //Inicia a contagem do tempo
     createNewDeck(); // Distribui as cartas
@@ -75,18 +76,24 @@ $(function () {
         counter = setInterval(timer, 1000); // Reinicia a contagem de tempo
         moves = 0;
         tempoTotal = 0;
+        pairs = 0;
     }
     
     // Função para comparar 2 cards
     function comparaCards(array) {
         if(array[0] == array[1]){
-            console.log("Achou")
+            console.log("Achou");
+            pairs += 1;
             $('.fliped').addClass('matched');
             $('.matched').removeClass('fliped');
         } else {
             // Falta só adicionar o timeout para desvirar os cards !!!
             console.log("Não achou");
-            $('.fliped').removeClass('fliped');
+            $('.fliped').addClass('unmatched');
+            setTimeout(function () {
+                $('.fliped').removeClass('fliped unmatched');
+            }, 1000);
+            
         };
     }
 
@@ -111,6 +118,9 @@ $(function () {
             $('.stars li:nth-child(2)').css('visibility','hidden');
         } else if (moves > 24) {
             $('.stars li:last-child').css('visibility','hidden');
+        }
+        if(pairs == 8) {
+            window.alert('Fim de jogo!');
         }
     });
 
