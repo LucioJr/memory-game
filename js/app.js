@@ -1,19 +1,19 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     // Initialize variables after document is loaded
-    var counter;
-    var moves = 0;
-    var m = 0; 
-    var s = 0;
-    var numStars = 3;
-    var tempoTotal;
-    var pairs = 0;
-    var flipedCards = [];
+    let counter;
+    let moves = 0;
+    let m = 0; 
+    let s = 0;
+    let numStars = 3;
+    let tempoTotal;
+    let pairs = 0;
+    let flipedCards = [];
     counter = setInterval(timer, 1000); //Starts timer
     createNewDeck(); // Prepare board
    
     // Shuffle cards (given by Udacity)
     function shuffle(array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
+        let currentIndex = array.length, temporaryValue, randomIndex;
       
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {
@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     
     // Create deck of shuffled cards
     function createNewDeck() {
-        var cardsList = ["fab fa-android","fab fa-android","fab fa-mailchimp","fab fa-mailchimp","fas fa-code","fas fa-code","fas fa-dragon","fas fa-dragon","fas fa-drum","fas fa-drum","fas fa-feather","fas fa-feather","fas fa-gamepad","fas fa-gamepad","fas fa-lightbulb","fas fa-lightbulb"];
+        let cardsList = ["fab fa-android","fab fa-android","fab fa-mailchimp","fab fa-mailchimp","fas fa-code","fas fa-code","fas fa-dragon","fas fa-dragon","fas fa-drum","fas fa-drum","fas fa-feather","fas fa-feather","fas fa-gamepad","fas fa-gamepad","fas fa-lightbulb","fas fa-lightbulb"];
 
-        var newDeck = shuffle(cardsList);
+        let newDeck = shuffle(cardsList);
         
         for(var i = 0; i < newDeck.length; i++){
             document.querySelectorAll('.card')[i].innerHTML = "<i class='"+ newDeck[i] +"'></i>";
@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Restart game function
     function restartGame() {
+        flipedCards = [];
         s = -1;
         m = -1;
         numStars = 3;
