@@ -7,7 +7,13 @@
 }
 
 body{
-    background-color: #ffffff;  
+    background-color: #ffffff;
+    /* min-height: 100vh; */
+}
+
+section{
+    width: 100vw;
+    margin-top: calc((90vh - 600px)/2);
 }
 
 h1{
@@ -26,7 +32,7 @@ h1{
     display: flex;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-            justify-content: space-between;
+            justify-content: space-around;
 }
 
 .stars{
@@ -63,8 +69,9 @@ h1{
 }
 
 .card{
-    min-width: 130px;
-    min-height: 130px;
+    width: 130px;
+    height: 130px;
+    /* flex-basis: 22%; */
     padding: 5px;
     background-image: -webkit-linear-gradient(bottom right, #4CA1AF, #C4E0E5);
     background-image: linear-gradient(to top left, #4CA1AF, #C4E0E5);
@@ -129,7 +136,6 @@ h1{
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    /* padding-top: 100px; Location of the box */
     left: calc((100vw - 400px)/2);
     top: calc((100vh - 400px)/2);
     width: 400px; /* Full width */
@@ -216,3 +222,74 @@ h1{
     background-color: red;
     color: #fff;
 }
+
+@media all and (max-width: 812px){
+    .modal, .modal-content{
+        width: 300px;
+        height: 300px;
+        left: calc((100vw - 300px)/2);
+        top: calc((100vh - 300px)/2);
+    }
+
+    .modal-content h1, .modal-content h3 {
+        margin: 15px auto;
+    }
+
+    .modal-content p {
+        margin: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .modal-content p:first-of-type {
+        margin-bottom: 15px;
+    }
+
+    section{
+        width: 100vw;
+        margin-top: 30px;
+    }
+}
+
+@media all and (max-width: 767px){
+    
+    .deck{
+        border-radius: 8px;
+        width: 90vw;
+    }
+}
+
+@media all and (max-width: 600px){
+    
+    .scoreboard{
+        width: 90vw;
+    }
+
+    .deck{
+        border-radius: 8px;
+        width: 95vw;
+    }
+
+    .card{
+        flex-basis: 22%;
+    }
+
+}
+
+@media all and (max-width: 480px){
+
+    .deck{
+        height: auto;
+        width: 88vw;
+    }
+
+    .card{
+        flex-basis: 42%;
+        margin-top: 10px;
+    }
+
+    .card:last-of-type{
+        margin-bottom: 10px;
+    }
+
+}
+
