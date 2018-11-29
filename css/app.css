@@ -43,12 +43,16 @@ h1{
     display: inline;
 }
 
-.stars li i, .modal i{
+.stars li i, .modal i {
     color: #ffcc00;
     text-shadow: 1px 1px 1px #444;
 }
 
-.deck{
+.reset-button {
+    cursor: pointer;
+}
+
+.deck {
     width: 600px;
     height: 600px;
     margin: 0 auto;
@@ -283,12 +287,16 @@ h1{
     }
 
     .card{
-        flex-basis: 42%;
+        height: 70px;
         margin-top: 10px;
     }
 
     .card:last-of-type{
         margin-bottom: 10px;
+    }
+
+    .card i{
+        font-size: 48px;
     }
 
 }
